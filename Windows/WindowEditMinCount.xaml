@@ -1,0 +1,22 @@
+﻿<Window x:Class="MyGloveShop.Windows.WindowEditMinCount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyGloveShop.Windows"
+        mc:Ignorable="d"
+        Title="WindowEditMinCount" Height="150" Width="400" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Изменить значение на: " FontSize="15" VerticalAlignment="Center" Margin="10"/>
+        <TextBox x:Name="TxtMinCount" Grid.Column="1" FontSize="15" VerticalAlignment="Center" Margin="10"/>
+        <Button x:Name="BtnSave" Content="Сохранить" FontSize="15" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10" Click="BtnSave_Click"/>
+    </Grid>
+</Window>
