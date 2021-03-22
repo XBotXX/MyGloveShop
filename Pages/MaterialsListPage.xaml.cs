@@ -29,11 +29,30 @@ namespace MyGloveShop.Pages
 
         public static ObservableCollection<List<Materials>> ListMaterialsBuff = new ObservableCollection<List<Materials>>();
 
+        public List<string> LstSort = new List<string>()
+        {
+            "(-- выбирите --)",
+            "Сортировать по нименованию и возратанию",
+            "Сортировать по наимонованию и убыванию",
+            "Сортировать по остатку на складе и возратанию",
+            "Сортировать по остатку на складе и убыванию",
+            "Сортировать по стоимости и возратанию",
+            "Сортировать по стоимости и убыванию"
+        };
+
         public MaterialsListPage()
         {
             InitializeComponent();
 
-            ListMaterialsBuff.CollectionChanged += ListMaterialsBuff_CollectionChanged;
+            var nameTypeMaterial = Entities.GetContext().TypeMaterial.Select(i => i.NameTypeMaterial).ToList();
+
+            nameTypeMaterial.Insert(0, "(-- выбирите --)");
+
+            ComboFilter.ItemsSource = nameTypeMaterial;
+
+            //ListMaterialsBuff.CollectionChanged += ListMaterialsBuff_CollectionChanged;
+
+            ComboSort.ItemsSource = LstSort.ToList();
 
             ListMaterialsBuff.Add(Entities.GetContext().Materials.ToList());
 
@@ -49,29 +68,82 @@ namespace MyGloveShop.Pages
             LstPages.SelectedIndex = 0;
         }
 
-        private void ListMaterialsBuff_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            LstMaterials.ItemsSource = ListMaterialsBuff[0].ToList();
-        }
+        //private void ListMaterialsBuff_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    LstMaterials.ItemsSource = ListMaterialsBuff[0].ToList();
+        //}
 
         private void LstPages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(LstPages.SelectedItem is int countPage)
-            {
-                if(countPage == 1)
-                {
-                    LstMaterials.ItemsSource = Entities.GetContext().Materials.ToList().Take(15);
-                }
-                else
-                {
-                    LstMaterials.ItemsSource = Entities.GetContext().Materials.ToList().Skip(15 * countPage).Take(15);
-                }
-            }
+            Filter();
         }
 
         public void Filter()
         {
+            // Search Start
+            ListMaterialsBuff[0] = Entities.GetContext().Materials.Where(i => i.NameMaterial.Contains(TxtSeach.Text) || i.Description.Contains(TxtSeach.Text)).ToList();
+            // Search End
 
+            switch (ComboSort.SelectedItem)
+            {
+                case "Сортировать по нименованию и возратанию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderBy(i => i.NameMaterial).ToList();
+                    break;
+                case "Сортировать по наимонованию и убыванию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderByDescending(i => i.NameMaterial).ToList();
+                    break;
+                case "Сортировать по остатку на складе и возратанию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderBy(i => i.CountOnWarehouse).ToList();
+                    break;
+                case "Сортировать по остатку на складе и убыванию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderByDescending(i => i.CountOnWarehouse).ToList();
+                    break;
+                case "Сортировать по стоимости и возратанию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderBy(i => i.Price).ToList();
+                    break;
+                case "Сортировать по стоимости и убыванию":
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderByDescending(i => i.Price).ToList();
+                    break;
+                default:
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].OrderBy(i => i.IdMaterial).ToList();
+                    break;
+            }
+
+            if(ComboFilter.SelectedIndex != 0)
+            {
+                ListMaterialsBuff[0] = ListMaterialsBuff[0].Where(i => i.IdTypeMaterial == ComboFilter.SelectedIndex).ToList();
+            }
+
+            int buffCountRows = ListMaterialsBuff[0].Count;
+
+            // Count page Start
+            CountPage.Clear();
+
+            for (int i = 15, j = 1; i < ListMaterialsBuff[0].ToList().Count; i += 15, j++)
+            {
+                CountPage.Add(j);
+            }
+
+            LstPages.ItemsSource = CountPage.ToList();
+
+            if (LstPages.SelectedItem is int countPage)
+            {
+                if (countPage == 1)
+                {
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].Take(15).ToList();
+                }
+                else
+                {
+                    ListMaterialsBuff[0] = ListMaterialsBuff[0].Skip(15 * countPage).Take(15).ToList();
+                }
+            }
+
+            // Count Rows Start
+            TxtCountRows.Text = ListMaterialsBuff[0].Count.ToString() + " из " + buffCountRows.ToString();
+            // Count Rows End
+
+            LstMaterials.ItemsSource = ListMaterialsBuff[0].ToList();
+            // Count page End
         }
 
         private void BtnMinCountEdit_Click(object sender, RoutedEventArgs e)
@@ -128,6 +200,27 @@ namespace MyGloveShop.Pages
             {
                 BtnMinCountEdit.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void TxtSeach_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboSort.SelectedIndex = 0;
+            ComboFilter.SelectedIndex = 0;
+        }
+
+        private void ComboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

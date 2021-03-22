@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MyGloveShop.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MaterialsListPage">
+      Title="MaterialsListPage" Loaded="Page_Loaded">
 
     <Grid Background="White">
         <Grid>
@@ -21,11 +21,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="TxtSeach" FontSize="15" Height="30" Margin="10,0" VerticalContentAlignment="Center"/>
-                <ComboBox x:Name="ComboSort" Grid.Column="1" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center"/>
-                <ComboBox x:Name="ComboFilter" Grid.Column="2" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="TxtSeach" FontSize="15" Height="30" Margin="10,0" VerticalContentAlignment="Center" TextChanged="TxtSeach_TextChanged"/>
+                <ComboBox x:Name="ComboSort" Grid.Column="1" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center" SelectionChanged="ComboSort_SelectionChanged"/>
+                <ComboBox x:Name="ComboFilter" Grid.Column="2" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center" SelectionChanged="ComboFilter_SelectionChanged"/>
                 <Button x:Name="BtnMinCountEdit" Visibility="Hidden" Content="Изменить" Grid.Column="3" Height="30" Margin="10,0" FontSize="15" VerticalAlignment="Center" Click="BtnMinCountEdit_Click"/>
+                <TextBlock x:Name="TxtCountRows" Text="100 из 100" FontSize="15" Height="30" VerticalAlignment="Center" Margin="10,0" Grid.Column="4" TextWrapping="Wrap"/>
             </Grid>
             
             <ListBox x:Name="LstMaterials" Grid.Row="1" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
