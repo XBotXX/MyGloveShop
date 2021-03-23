@@ -21,13 +21,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="TxtSeach" FontSize="15" Height="30" Margin="10,0" VerticalContentAlignment="Center" TextChanged="TxtSeach_TextChanged"/>
                 <ComboBox x:Name="ComboSort" Grid.Column="1" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center" SelectionChanged="ComboSort_SelectionChanged"/>
                 <ComboBox x:Name="ComboFilter" Grid.Column="2" Height="30" Margin="10,0" FontSize="15" VerticalContentAlignment="Center" SelectionChanged="ComboFilter_SelectionChanged"/>
-                <Button x:Name="BtnMinCountEdit" Visibility="Hidden" Content="Изменить" Grid.Column="3" Height="30" Margin="10,0" FontSize="15" VerticalAlignment="Center" Click="BtnMinCountEdit_Click"/>
-                <TextBlock x:Name="TxtCountRows" Text="100 из 100" FontSize="15" Height="30" VerticalAlignment="Center" Margin="10,0" Grid.Column="4" TextWrapping="Wrap"/>
+                <Button x:Name="BtnMinCountEdit" Visibility="Hidden" Content="Изменить" Grid.Column="4" Height="30" Margin="10,0" FontSize="15" VerticalAlignment="Center" Click="BtnMinCountEdit_Click"/>
+                <Button x:Name="BtnAddMaterial" Content="Добавить" Grid.Column="3" Height="30" Margin="10,0" FontSize="15" VerticalAlignment="Center" Click="BtnAddMaterial_Click"/>
+                <TextBlock x:Name="TxtCountRows" Text="100 из 100" FontSize="15" Height="30" VerticalAlignment="Center" Margin="10,0" Grid.Column="5" TextWrapping="Wrap"/>
             </Grid>
             
             <ListBox x:Name="LstMaterials" Grid.Row="1" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="LstMaterials_MouseDoubleClick">

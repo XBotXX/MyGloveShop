@@ -235,6 +235,8 @@ namespace MyGloveShop.Pages
 
                 addEditMaterials.Owner = Classes.ParentWindow.parentWindow;
 
+                addEditMaterials.IdMaterial = materials.IdMaterial;
+
                 addEditMaterials.TxtNameMaterial.Text = materials?.NameMaterial.ToString();
                 addEditMaterials.TxtCountOnWarehouse.Text = materials?.CountOnWarehouse.ToString();
                 addEditMaterials.TxtCountPack.Text = materials?.CountPackaging.ToString();
@@ -246,37 +248,33 @@ namespace MyGloveShop.Pages
                 addEditMaterials.ComboTypeMaterial.SelectedItem = materials?.TypeMaterial.NameTypeMaterial;
                 addEditMaterials.ComboTypeUnit.SelectedItem = materials?.TypeUnit.NameTypeUnit;
 
-                //addEditClients.DgTag.ItemsSource = client.ListTag;
+                addEditMaterials.DgSupplair.ItemsSource = materials?.ListSuppliers;
 
                 addEditMaterials.ShowDialog();
 
                 if (addEditMaterials.DialogResult.HasValue && addEditMaterials.DialogResult.Value)
                 {
-                    //byte[] imgdata = null;
 
-                    //if (Classes.FilePathFoto.path != null)
-                    //{
-                    //    imgdata = System.IO.File.ReadAllBytes(Classes.FilePathFoto.path);
-                    //}
+                    var materialSave = Entities.GetContext().Materials.Where(i => i.IdMaterial == materials.IdMaterial).FirstOrDefault();
 
-                    //var Clientss = Entities.GetContext().Client.Where(i => i.IdClient == client.IdClient).FirstOrDefault();
+                    //string newPhotoPath = $"/materials/mat_{materialSave.IdMaterial}.jpeg";
 
-                    //Clientss.LastName = addEditClients.TxtLastName.Text;
-                    //Clientss.FirstName = addEditClients.TxtFirstName.Text;
-                    //Clientss.MiddleName = addEditClients.TxtMiddleName.Text;
-                    //Clientss.IdGender = Entities.GetContext().Gender.Where(i => i.Name == addEditClients.ComboGender.Text).FirstOrDefault()?.IdGender;
-                    //Clientss.Phone = addEditClients.TxtPhone.Text;
-                    //Clientss.BirhDate = addEditClients.DtPikerBithDate.SelectedDate.Value;
-                    //Clientss.Email = addEditClients.TxtEmall.Text;
+                    materialSave.NameMaterial = addEditMaterials.TxtNameMaterial.Text;
+                    materialSave.CountOnWarehouse = Int32.Parse(addEditMaterials.TxtCountOnWarehouse.Text);
+                    materialSave.CountPackaging = Int32.Parse(addEditMaterials.TxtCountPack.Text);
+                    materialSave.MinCount = Int32.Parse(addEditMaterials.TxtMinCount.Text);
+                    materialSave.Price = Decimal.Parse(addEditMaterials.TxtPrice.Text);
+                    materialSave.Description = addEditMaterials.TxtDescription.Text;
+                    //materialSave.Photo = newPhotoPath;
+                    //File.Move(Classes.FilePathFoto.path, newPhotoPath);
 
-                    //if (imgdata != null)
-                    //{
-                    //    Clientss.Photo = imgdata;
-                    //}
 
-                    //Entities.GetContext().Entry(Clientss).State = EntityState.Modified;
+                    materialSave.IdTypeMaterial = Entities.GetContext().TypeMaterial.Where(i => i.NameTypeMaterial == addEditMaterials.ComboTypeMaterial.Text).FirstOrDefault().IdTypeMaterial;
+                    materialSave.IdTypeUnit = Entities.GetContext().TypeUnit.Where(i => i.NameTypeUnit == addEditMaterials.ComboTypeUnit.Text).FirstOrDefault().IdTypeUnit;
 
-                    //Entities.GetContext().SaveChanges();
+                    Entities.GetContext().Entry(materialSave).State = EntityState.Modified;
+
+                    Entities.GetContext().SaveChanges();
                 }
 
                 LstMaterials.SelectedItem = materials;
@@ -285,17 +283,9 @@ namespace MyGloveShop.Pages
             }
         }
 
-        private BitmapImage byteToImage(byte[] array)
+        private void BtnAddMaterial_Click(object sender, RoutedEventArgs e)
         {
-            using (MemoryStream ms = new MemoryStream(array, 0, array.Length))
-            {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.StreamSource = ms;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.EndInit();
-                return image;
-            }
+
         }
     }
 }

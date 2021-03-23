@@ -44,6 +44,26 @@
             <TextBox x:Name="TxtCountPack" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
             <TextBox x:Name="TxtMinCount" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
             <TextBox x:Name="TxtPrice" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+
+            <DataGrid x:Name="DgSupplair" Grid.Column="0" Grid.Row="7" Margin="10,5" Grid.RowSpan="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Supplair" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NameSupplier}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <ComboBox x:Name="ComboListSupplair" DisplayMemberPath="NameSupplier" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Button x:Name="BtnAddSupplier" Content="Add Suppleir" Grid.Column="1" Grid.Row="8" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnAddSupplier_Click"/>
+
+            <Button x:Name="BtnDelateSupplier" Content="Del Supplier" Grid.Column="0" Grid.Row="10" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnDelateSupplier_Click"/>
+
+            <Button x:Name="BtnDel" Content="Удалить" Grid.Column="1" Grid.Row="9" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
+            <Button x:Name="BtnSave" Content="Сохранить" Grid.Column="1" Grid.Row="10" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnSave_Click"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -56,7 +76,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Image x:Name="ImgMaterial" Stretch="UniformToFill" Margin="10"/>
-                <Button Content="Просмотр..." FontSize="15" Margin="10,0" Grid.Row="1" Width="150"/>
+                <Button x:Name="ViewFoto" Content="Просмотр..." FontSize="15" Margin="10,0" Grid.Row="1" Width="150" Click="ViewFoto_Click"/>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
