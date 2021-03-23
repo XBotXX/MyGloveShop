@@ -113,6 +113,9 @@
     <Compile Include="VW_MaterialDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddEditMaterials.xaml.cs">
+      <DependentUpon>AddEditMaterials.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowEditMinCount.xaml.cs">
       <DependentUpon>WindowEditMinCount.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\MaterialsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditMaterials.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

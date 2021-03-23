@@ -30,7 +30,7 @@
                 <TextBlock x:Name="TxtCountRows" Text="100 из 100" FontSize="15" Height="30" VerticalAlignment="Center" Margin="10,0" Grid.Column="4" TextWrapping="Wrap"/>
             </Grid>
             
-            <ListBox x:Name="LstMaterials" Grid.Row="1" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="LstMaterials" Grid.Row="1" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="LstMaterials_MouseDoubleClick">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" HorizontalAlignment="Center"/>

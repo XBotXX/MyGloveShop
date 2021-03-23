@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -221,6 +222,80 @@ namespace MyGloveShop.Pages
         private void ComboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void LstMaterials_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LstMaterials.SelectedItem is Materials materials)
+            {
+
+                Classes.AddEditClass.StatusEditAdd = Classes.AddEditClass.EditAddClient.Edit;
+
+                Windows.AddEditMaterials addEditMaterials = new Windows.AddEditMaterials();
+
+                addEditMaterials.Owner = Classes.ParentWindow.parentWindow;
+
+                addEditMaterials.TxtNameMaterial.Text = materials?.NameMaterial.ToString();
+                addEditMaterials.TxtCountOnWarehouse.Text = materials?.CountOnWarehouse.ToString();
+                addEditMaterials.TxtCountPack.Text = materials?.CountPackaging.ToString();
+                addEditMaterials.TxtMinCount.Text = materials?.MinCount.ToString();
+                addEditMaterials.TxtPrice.Text = materials?.Price.ToString();
+                addEditMaterials.TxtDescription.Text = materials?.Description;
+                addEditMaterials.ImgMaterial.Source = new BitmapImage(new Uri(materials?.Photo, UriKind.Relative));
+
+                addEditMaterials.ComboTypeMaterial.SelectedItem = materials?.TypeMaterial.NameTypeMaterial;
+                addEditMaterials.ComboTypeUnit.SelectedItem = materials?.TypeUnit.NameTypeUnit;
+
+                //addEditClients.DgTag.ItemsSource = client.ListTag;
+
+                addEditMaterials.ShowDialog();
+
+                if (addEditMaterials.DialogResult.HasValue && addEditMaterials.DialogResult.Value)
+                {
+                    //byte[] imgdata = null;
+
+                    //if (Classes.FilePathFoto.path != null)
+                    //{
+                    //    imgdata = System.IO.File.ReadAllBytes(Classes.FilePathFoto.path);
+                    //}
+
+                    //var Clientss = Entities.GetContext().Client.Where(i => i.IdClient == client.IdClient).FirstOrDefault();
+
+                    //Clientss.LastName = addEditClients.TxtLastName.Text;
+                    //Clientss.FirstName = addEditClients.TxtFirstName.Text;
+                    //Clientss.MiddleName = addEditClients.TxtMiddleName.Text;
+                    //Clientss.IdGender = Entities.GetContext().Gender.Where(i => i.Name == addEditClients.ComboGender.Text).FirstOrDefault()?.IdGender;
+                    //Clientss.Phone = addEditClients.TxtPhone.Text;
+                    //Clientss.BirhDate = addEditClients.DtPikerBithDate.SelectedDate.Value;
+                    //Clientss.Email = addEditClients.TxtEmall.Text;
+
+                    //if (imgdata != null)
+                    //{
+                    //    Clientss.Photo = imgdata;
+                    //}
+
+                    //Entities.GetContext().Entry(Clientss).State = EntityState.Modified;
+
+                    //Entities.GetContext().SaveChanges();
+                }
+
+                LstMaterials.SelectedItem = materials;
+
+                Filter();
+            }
+        }
+
+        private BitmapImage byteToImage(byte[] array)
+        {
+            using (MemoryStream ms = new MemoryStream(array, 0, array.Length))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = ms;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                return image;
+            }
         }
     }
 }
