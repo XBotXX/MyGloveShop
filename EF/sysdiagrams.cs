@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyGloveShop
+namespace MyGloveShop.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class VW_MaterialDetails
+    public partial class sysdiagrams
     {
-        public string Тип_материала { get; set; }
-        public string Наименование_материала { get; set; }
-        public int Количество_на_складе { get; set; }
-        public Nullable<int> Количество_возможных_поставщиков { get; set; }
-        public string Текущая_стоимость { get; set; }
-        public Nullable<int> Количество_материалов_на_начало_месяца { get; set; }
-        public string Описание { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

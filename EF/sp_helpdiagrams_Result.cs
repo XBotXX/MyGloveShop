@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyGloveShop
+namespace MyGloveShop.EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class HistoryMaterialsOnWarehouse
+    public partial class sp_helpdiagrams_Result
     {
-        public int IdChange { get; set; }
-        public int IdMaterial { get; set; }
-        public int CountOnWareHouse { get; set; }
-        public System.DateTime Datetime { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

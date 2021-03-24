@@ -7,23 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyGloveShop
+namespace MyGloveShop.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeMaterial
+    public partial class Suppliers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeMaterial()
+        public Suppliers()
         {
-            this.Materials = new HashSet<Materials>();
+            this.MaterialToSupplier = new HashSet<MaterialToSupplier>();
         }
     
-        public int IdTypeMaterial { get; set; }
-        public string NameTypeMaterial { get; set; }
+        public int IdSupplier { get; set; }
+        public string NameSupplier { get; set; }
+        public int IdTypeSupplier { get; set; }
+        public string INN { get; set; }
+        public int Raiting { get; set; }
+        public System.DateTime StartDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Materials> Materials { get; set; }
+        public virtual ICollection<MaterialToSupplier> MaterialToSupplier { get; set; }
+        public virtual TypeSupplier TypeSupplier { get; set; }
     }
 }

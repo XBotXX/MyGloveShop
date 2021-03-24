@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyGloveShop
+namespace MyGloveShop.EF
 {
     using System;
     using System.Data.Entity;
