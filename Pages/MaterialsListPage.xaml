@@ -31,7 +31,7 @@
                 <Button x:Name="BtnAddMaterial" Content="Добавить" Grid.Column="3" Height="30" Margin="10,0" FontSize="15" VerticalAlignment="Center" Click="BtnAddMaterial_Click"/>
                 <TextBlock x:Name="TxtCountRows" Text="100 из 100" FontSize="15" Height="30" VerticalAlignment="Center" Margin="10,0" Grid.Column="5" TextWrapping="Wrap"/>
             </Grid>
-            
+
             <ListBox x:Name="LstMaterials" Grid.Row="1" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="LstMaterials_MouseDoubleClick">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -125,7 +125,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>-->
 
-            <ListBox x:Name="LstPages" Grid.Row="2" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" HorizontalAlignment="Right" SelectionChanged="LstPages_SelectionChanged">
+            <ListBox x:Name="LstPages" Grid.Row="2" Margin="10,0" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" HorizontalAlignment="Right" SelectionChanged="LstPages_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True"/>

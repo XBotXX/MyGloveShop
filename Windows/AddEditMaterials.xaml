@@ -24,28 +24,32 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Наменование: " Grid.Row="0" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Тип материала: " Grid.Row="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Количество на складе: " Grid.Row="2" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Единица измерения: " Grid.Row="3" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Колличество в упаковке: " Grid.Row="4" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Минимальное количество: " Grid.Row="5" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Label Content="Стоимость за еденицу: " Grid.Row="6" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Цена мин. партия: " Grid.Row="0" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label x:Name="LblMinPartion" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            
+            <Label Content="Наменование: " Grid.Row="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Тип материала: " Grid.Row="2" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Количество на складе: " Grid.Row="3" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Единица измерения: " Grid.Row="4" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Колличество в упаковке: " Grid.Row="5" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Минимальное количество: " Grid.Row="6" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Label Content="Стоимость за еденицу: " Grid.Row="7" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
 
-            <TextBox x:Name="TxtNameMaterial" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <ComboBox x:Name="ComboTypeMaterial" DisplayMemberPath="NameTypeMaterial" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <TextBox x:Name="TxtCountOnWarehouse" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <ComboBox x:Name="ComboTypeUnit" DisplayMemberPath="NameTypeUnit" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <TextBox x:Name="TxtCountPack" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <TextBox x:Name="TxtMinCount" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <TextBox x:Name="TxtPrice" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <TextBox x:Name="TxtNameMaterial" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <ComboBox x:Name="ComboTypeMaterial" DisplayMemberPath="NameTypeMaterial" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <TextBox x:Name="TxtCountOnWarehouse" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <ComboBox x:Name="ComboTypeUnit" DisplayMemberPath="NameTypeUnit" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <TextBox x:Name="TxtCountPack" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <TextBox x:Name="TxtMinCount" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <TextBox x:Name="TxtPrice" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
 
-            <DataGrid x:Name="DgSupplair" Grid.Column="0" Grid.Row="7" Margin="10,5" Grid.RowSpan="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+            <DataGrid x:Name="DgSupplair" Grid.Column="0" Grid.Row="8" Margin="10,5" Grid.RowSpan="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Supplair" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -57,13 +61,13 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <ComboBox x:Name="ComboListSupplair" DisplayMemberPath="NameSupplier" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
-            <Button x:Name="BtnAddSupplier" Content="Add Suppleir" Grid.Column="1" Grid.Row="8" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnAddSupplier_Click"/>
+            <ComboBox x:Name="ComboListSupplair" DisplayMemberPath="NameSupplier" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Margin="10,0"/>
+            <Button x:Name="BtnAddSupplier" Content="Add Suppleir" Grid.Column="1" Grid.Row="9" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnAddSupplier_Click"/>
 
-            <Button x:Name="BtnDelateSupplier" Content="Del Supplier" Grid.Column="0" Grid.Row="10" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnDelateSupplier_Click"/>
+            <Button x:Name="BtnDelateSupplier" Content="Del Supplier" Grid.Column="0" Grid.Row="11" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnDelateSupplier_Click"/>
 
-            <Button x:Name="BtnDel" Content="Удалить" Grid.Column="1" Grid.Row="9" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
-            <Button x:Name="BtnSave" Content="Сохранить" Grid.Column="1" Grid.Row="10" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnSave_Click"/>
+            <Button x:Name="BtnDel" Content="Удалить" Grid.Column="1" Grid.Row="10" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnDel_Click"/>
+            <Button x:Name="BtnSave" Content="Сохранить" Grid.Column="1" Grid.Row="11" FontSize="15" Margin="10,0" VerticalAlignment="Center" Click="BtnSave_Click"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

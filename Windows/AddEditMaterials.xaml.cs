@@ -22,6 +22,9 @@ namespace MyGloveShop.Windows
     public partial class AddEditMaterials : Window
     {
         public int IdMaterial;
+
+        public bool StatusDelete = false;
+
         public AddEditMaterials()
         {
             InitializeComponent();
@@ -51,7 +54,7 @@ namespace MyGloveShop.Windows
 
             //string FileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
 
-            ImgMaterial.Source = new BitmapImage(new Uri(filePath, UriKind.RelativeOrAbsolute));
+            //ImgMaterial.Source = new BitmapImage(new Uri(filePath, UriKind.RelativeOrAbsolute));
         }
 
         private void BtnAddSupplier_Click(object sender, RoutedEventArgs e)
@@ -100,6 +103,36 @@ namespace MyGloveShop.Windows
                         MessageBox.Show("Невозможно удалить");
                     }
 
+                }
+            }
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Удалить?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var materials = Entities.GetContext().Materials.Where(i => i.IdMaterial == IdMaterial).FirstOrDefault();
+
+                if (true)
+                {
+                    Entities.GetContext().Entry(materials).State = EntityState.Deleted;
+
+                    var history = Entities.GetContext().HistoryMaterialsOnWarehouse.Where(i => i.IdMaterial == IdMaterial).FirstOrDefault();
+
+                    Entities.GetContext().Entry(materials).State = EntityState.Deleted;
+
+                    Entities.GetContext().SaveChanges();
+
+                    StatusDelete = true;
+
+                    this.DialogResult = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно удалить");
                 }
             }
         }
